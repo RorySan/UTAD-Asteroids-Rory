@@ -73,3 +73,6 @@ crashlytics-build.properties
 Assets/xSpace Shooter Visual Assets/
 
 Space Shooter Visual Assets/
+Assets/Plugins/
+Assets/Plugins.meta
+.vsconfig
