@@ -7,7 +7,9 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     float speed;
     float damage;
-    Vector3 targetDirection;
+    Vector3 targetVector = Vector3.right;
+
+
 
     [SerializeField]
     bool isHoming;
@@ -29,21 +31,18 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.Rotate(new Vector3(0, 0, 90));
         Destroy(gameObject, maxLifeTime);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(targetDirection * speed * Time.deltaTime);
+        transform.Translate(targetVector * speed * Time.deltaTime);
     }
 
-
-
-    public void SetTargetDirection(Vector3 targetDirection, float damage)
+    public void SetupProjectile(float damage)
     {
         this.damage = damage;
-        this.targetDirection = targetDirection;
     }
 }

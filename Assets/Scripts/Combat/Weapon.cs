@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Asteroids.Combat
 {
@@ -6,7 +7,7 @@ namespace Asteroids.Combat
     public class Weapon : ScriptableObject
     {
 
-        [SerializeField] float rateOfFire = 1f;
+        [SerializeField] float rateOfFire = 60f;
         [SerializeField] Projectile projectile = null;
         [SerializeField] float weaponDamage = 10f;
 
@@ -14,13 +15,22 @@ namespace Asteroids.Combat
         const string weaponName = "Weapon";
 
 
-        public void Fire(Transform weapon)
+        public void Fire(Transform weaponPlatform, Transform instigator)
         {
-            Projectile projectileInstance = Instantiate(projectile, weapon.position, Quaternion.identity);
-            projectileInstance.SetTargetDirection(weapon.right, weaponDamage);
+            Projectile projectileInstance = Instantiate(projectile, weaponPlatform.position, weaponPlatform.rotation);
+            projectileInstance.SetupProjectile(weaponDamage);
+        }
+
+        public IEnumerator FireContinously(Transform weaponPlatform, Transform instigator)
+        {
+            while (true)
+            {
+                Projectile projectileInstance = Instantiate(projectile, weaponPlatform.position, weaponPlatform.rotation);
+                projectileInstance.SetupProjectile(weaponDamage);
+                yield return new WaitForSeconds(60 / rateOfFire);
+            }
         }
 
 
     }
-
 }

@@ -27,7 +27,11 @@ namespace Asteroids.Control
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                myShooter.Shoot();
+                myShooter.StartShooting(transform);
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                myShooter.StopShooting();
             }
         }
 

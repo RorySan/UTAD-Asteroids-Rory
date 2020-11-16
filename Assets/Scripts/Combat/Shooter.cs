@@ -10,6 +10,8 @@ namespace Asteroids.Combat
         Weapon currentWeapon;
         [SerializeField] Transform weaponPlatform;
 
+        Coroutine shootingCoroutine;
+
 
         // Start is called before the first frame update
         void Start()
@@ -23,9 +25,18 @@ namespace Asteroids.Combat
 
         }
 
-        public void Shoot()
+        public void ChangeWeapon(Weapon newWeapon)
         {
-            currentWeapon.Fire(weaponPlatform);
+            currentWeapon = newWeapon;
+        }
+
+        public void StartShooting(Transform instigator)
+        {
+            shootingCoroutine = StartCoroutine(currentWeapon.FireContinously(transform, instigator));
+        }
+        public void StopShooting()
+        {
+            StopCoroutine(shootingCoroutine);
         }
     }
 
