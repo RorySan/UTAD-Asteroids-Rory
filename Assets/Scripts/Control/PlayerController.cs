@@ -1,4 +1,5 @@
-﻿using Asteroids.Movement;
+﻿using Asteroids.Combat;
+using Asteroids.Movement;
 using UnityEngine;
 
 namespace Asteroids.Control
@@ -7,10 +8,13 @@ namespace Asteroids.Control
     public class PlayerController : MonoBehaviour
     {
         Mover myMover;
+        Shooter myShooter;
+
 
         private void Awake()
         {
             myMover = GetComponent<Mover>();
+            myShooter = GetComponent<Shooter>();
         }
         // Start is called before the first frame update
         void Start()
@@ -21,7 +25,10 @@ namespace Asteroids.Control
         // Update is called once per frame
         void Update()
         {
-
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                myShooter.Shoot();
+            }
         }
 
         private void FixedUpdate()
