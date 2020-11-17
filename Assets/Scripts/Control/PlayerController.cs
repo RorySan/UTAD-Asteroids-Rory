@@ -11,6 +11,7 @@ namespace Asteroids.Control
         Shooter myShooter;
 
 
+
         private void Awake()
         {
             myMover = GetComponent<Mover>();

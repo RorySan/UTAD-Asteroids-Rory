@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6194973257721291183}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WeaponPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,8 +43,10 @@ GameObject:
   - component: {fileID: 6194973258947672799}
   - component: {fileID: 6194973258947672796}
   - component: {fileID: 6194973258947672771}
+  - component: {fileID: 8755585391518492431}
   - component: {fileID: 6194973258947672792}
-  m_Layer: 0
+  - component: {fileID: 1388350043}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,9 +60,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6194973258947672793}
-  m_LocalRotation: {x: -0, y: -0, z: -0.00081464543, w: 0.99999964}
+  m_LocalRotation: {x: 0, y: 0, z: -0.0008115565, w: 0.99999964}
   m_LocalPosition: {x: -4.57, y: -1.29, z: 0}
-  m_LocalScale: {x: 0.17437, y: 0.17437, z: 0.17437}
+  m_LocalScale: {x: 0.1935923, y: 0.1935923, z: 0.1935923}
   m_Children:
   - {fileID: 6194973259699158668}
   - {fileID: 6194973257721291183}
@@ -120,6 +122,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 11400000, guid: 85551a354bb9fef4e996958ab8f02709, type: 2}
   weaponPlatform: {fileID: 6194973257721291183}
+--- !u!114 &8755585391518492431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194973258947672793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14851d317ad451b438805c19931ee1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceForce: 120
 --- !u!50 &6194973258947672792
 Rigidbody2D:
   serializedVersion: 4
@@ -133,14 +148,30 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.7
+  m_LinearDrag: 0.5
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!58 &1388350043
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194973258947672793}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.39795214, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.27752
 --- !u!1 &6194973259699158669
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6194973259699158668}
   - component: {fileID: 6194973259699158707}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

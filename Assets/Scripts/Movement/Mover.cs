@@ -22,11 +22,6 @@ namespace Asteroids.Movement
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
-        private void FixedUpdate()
-        {
-
-        }
-
         public void Move(float rotation, float thrust)
         {
             _thrustDirection = transform.right;
