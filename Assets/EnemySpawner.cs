@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
         var rand = Random.Range(-13, 11.5f);
         var spawnPosition = new Vector2(rand, transform.position.y);
         Enemy newEnemy = Instantiate(enemy, spawnPosition, transform.rotation);
-        //Instantiate(enemy, transform.position, transform.rotation);
+
 
     }
 

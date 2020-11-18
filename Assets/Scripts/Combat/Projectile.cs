@@ -4,8 +4,8 @@ using UnityEngine.Events;
 public class Projectile : MonoBehaviour
 {
 
-    [SerializeField]
-    float speed;
+    [SerializeField] GameObject instigator;
+    [SerializeField] float speed;
     float damage;
     Vector3 targetVector = Vector3.right;
 
@@ -32,7 +32,6 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         Destroy(gameObject, maxLifeTime);
-
     }
 
     // Update is called once per frame
@@ -41,8 +40,10 @@ public class Projectile : MonoBehaviour
         transform.Translate(targetVector * speed * Time.deltaTime);
     }
 
-    public void SetupProjectile(float damage)
+    public void SetupProjectile(float damage, GameObject instigator)
     {
         this.damage = damage;
+        this.instigator = instigator;
+
     }
 }

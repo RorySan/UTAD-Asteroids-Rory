@@ -7,8 +7,10 @@ namespace Asteroids.Combat
     {
 
         [SerializeField]
-        Weapon currentWeapon;
+        WeaponConfig currentWeapon;
         [SerializeField] Transform weaponPlatform;
+        [SerializeField] float timeBetweenShots;
+        float timeSinceLastShot = Mathf.Infinity;
 
         Coroutine shootingCoroutine;
 
@@ -22,21 +24,19 @@ namespace Asteroids.Combat
         // Update is called once per frame
         void Update()
         {
-
+            timeSinceLastShot += Time.deltaTime;
         }
 
-        public void ChangeWeapon(Weapon newWeapon)
+        public void ChangeWeapon(WeaponConfig newWeapon)
         {
             currentWeapon = newWeapon;
         }
 
-        public void StartShooting(Transform instigator)
+        public void Shoot()
         {
-            shootingCoroutine = StartCoroutine(currentWeapon.FireContinously(transform, instigator));
-        }
-        public void StopShooting()
-        {
-            StopCoroutine(shootingCoroutine);
+            if (timeSinceLastShot <= 60 / currentWeapon.GetRateOfFire()) return;
+            currentWeapon.Fire(weaponPlatform, gameObject);
+            timeSinceLastShot = 0;
         }
     }
 

@@ -26,13 +26,9 @@ namespace Asteroids.Control
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
-                myShooter.StartShooting(transform);
-            }
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                myShooter.StopShooting();
+                myShooter.Shoot();
             }
         }
 
