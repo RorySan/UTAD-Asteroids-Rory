@@ -9,7 +9,6 @@ namespace Asteroids.Control
     {
         Mover myMover;
 
-
         [SerializeField] float thrust;
         [SerializeField] float rotation;
 
@@ -21,7 +20,7 @@ namespace Asteroids.Control
         // Start is called before the first frame update
         void Start()
         {
-            Destroy(gameObject, 6);
+            Destroy(gameObject, 30);
         }
 
         // Update is called once per frame

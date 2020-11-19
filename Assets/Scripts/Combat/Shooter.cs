@@ -27,7 +27,7 @@ namespace Asteroids.Combat
             timeSinceLastShot += Time.deltaTime;
         }
 
-        public void ChangeWeapon(WeaponConfig newWeapon)
+        public void EquipWeapon(WeaponConfig newWeapon)
         {
             currentWeapon = newWeapon;
         }
