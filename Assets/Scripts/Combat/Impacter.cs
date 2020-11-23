@@ -7,12 +7,12 @@ namespace Asteroids.Combat
     {
         [SerializeField] float impactDamage = 500;
 
-
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            collision.gameObject.GetComponent<Health>().TakeDamage(gameObject, impactDamage);
+            var health = collision.gameObject.GetComponent<Health>();
 
+            if (!health) return;
+            health.TakeDamage(gameObject, impactDamage);
         }
-
     }
 }

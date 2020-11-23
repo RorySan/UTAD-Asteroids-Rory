@@ -4,26 +4,17 @@ using UnityEngine;
 
 namespace Asteroids.Control
 {
-
     public class PlayerController : MonoBehaviour
     {
         Mover myMover;
         Shooter myShooter;
-
-
 
         private void Awake()
         {
             myMover = GetComponent<Mover>();
             myShooter = GetComponent<Shooter>();
         }
-        // Start is called before the first frame update
-        void Start()
-        {
 
-        }
-
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetKey(KeyCode.Space))

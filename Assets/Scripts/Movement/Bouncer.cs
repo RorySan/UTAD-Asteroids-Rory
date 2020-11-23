@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Bounce : MonoBehaviour
+public class Bouncer : MonoBehaviour
 {
     [SerializeField] float bounceForce = 150;
     Rigidbody2D _rigidbody;

@@ -3,8 +3,6 @@ using UnityEngine;
 
 namespace Asteroids.Control
 {
-
-
     public class MeteorController : MonoBehaviour
     {
         Mover myMover;
@@ -28,7 +26,5 @@ namespace Asteroids.Control
         {
             myMover.Move(rotation, thrust);
         }
-
-
     }
 }
