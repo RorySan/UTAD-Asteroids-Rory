@@ -29,6 +29,7 @@ namespace Asteroids.Combat
 
             if (healthPoints <= 0)
             {
+                Debug.Log(gameObject.name + "is dead");
                 onDie.Invoke();
                 GiveReward(instigator);
                 Die();
@@ -42,7 +43,6 @@ namespace Asteroids.Combat
             score.IncreaseScore(GetComponent<Enemy>().GetPoints());
         }
 
-
         public float GetHealth()
         {
             return healthPoints;
@@ -51,10 +51,33 @@ namespace Asteroids.Combat
         private void Die()
         {
             isDead = true;
-            // animator trigger die
+            // animator trigger die si añadimos animaciones
             GetComponentInChildren<SpriteRenderer>().enabled = false;
             GetComponent<Collider2D>().enabled = false;
-            Destroy(gameObject, 1);
+            Invoke(nameof(DisableImmediately), 0.5f); // tiempo para fx;
+        }
+
+        private void OnEnable()
+        {
+            ResetGameobject();
+        }
+
+        private void ResetGameobject()
+        {
+            GetComponentInChildren<SpriteRenderer>().enabled = true;
+            GetComponent<Collider2D>().enabled = true;
+            healthPoints = maxHealthPoints;
+            isDead = false;
+        }
+
+        private void DisableImmediately()
+        {
+            gameObject.SetActive(false);
+        }
+
+        private void OnDisable()
+        {
+            CancelInvoke();
         }
 
         public bool IsDead()

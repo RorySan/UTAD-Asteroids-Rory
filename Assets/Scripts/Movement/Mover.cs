@@ -22,6 +22,11 @@ namespace Asteroids.Movement
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
+        public void Stop()
+        {
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.angularVelocity = 0;
+        }
         public void Move(float rotation, float thrust)
         {
             _thrustDirection = transform.right;

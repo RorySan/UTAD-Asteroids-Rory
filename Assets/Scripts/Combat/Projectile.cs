@@ -9,55 +9,61 @@ namespace Asteroids.Combat
     {
 
         [SerializeField] GameObject instigator;
-        [SerializeField] float speed;
+        float speed;
         float damage;
+
         Vector3 targetVector = Vector3.right;
 
-
-
         [SerializeField] bool isHoming;
-
-        [SerializeField] GameObject hitEffect;
-
         [SerializeField] float maxLifeTime;
-
-        [SerializeField] float lifeAfterImpact;
-
+        [SerializeField] float lifeAfterImpact;// tiempo activo para efectos especiales
+        [SerializeField] GameObject hitEffect;// efectos especiales        
         [SerializeField] UnityEvent onHit;
 
-
-
-        // Start is called before the first frame update
-        void Start()
+        private void OnEnable()
         {
-            Destroy(gameObject, maxLifeTime);
+            GetComponentInChildren<MeshRenderer>().enabled = true;
+            Invoke(nameof(DisableImmediately), maxLifeTime);
         }
 
-        // Update is called once per frame
+        private void OnDisable()
+        {
+            // evita comportamientos extraños (ie: desactivarse por maxLifeTime después de Impactar)
+            CancelInvoke();
+        }
+
+        private void DisableImmediately()
+        {
+            gameObject.SetActive(false);
+        }
+        private void DisableProjectile()
+        {
+            GetComponentInChildren<MeshRenderer>().enabled = false;
+            // mirar hacerlo con coroutine.
+            Invoke(nameof(DisableImmediately), 0.5f);
+        }
+
         void Update()
         {
             transform.Translate(targetVector * speed * Time.deltaTime);
         }
 
-        public void SetupProjectile(float damage, GameObject instigator)
+        public void SetupProjectile(float damage, float speed, GameObject instigator)
         {
             this.damage = damage;
             this.instigator = instigator;
+            this.speed = speed;
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            onHit.Invoke();
             var isCombatTarget = collision.GetComponent<CombatTarget>();
             if (!isCombatTarget) return;
-            onHit.Invoke();
+
             collision.GetComponent<Health>().TakeDamage(instigator, damage);
-            DestroyProjectile();
+            DisableProjectile();
         }
 
-        private void DestroyProjectile()
-        {
-            gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
-            Destroy(gameObject, 1);
-        }
     }
 
 }

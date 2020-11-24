@@ -136,6 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6194973257721291183}
+  - component: {fileID: 7951441911547132295}
   m_Layer: 8
   m_Name: WeaponPlatform
   m_TagString: Untagged
@@ -157,6 +158,22 @@ Transform:
   m_Father: {fileID: 6194973258947672797}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7951441911547132295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6194973257721291176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 794a35dc52a4f6447b16aa04ce031b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 0}
+  weaponConfig: {fileID: 0}
+  fireSound: {fileID: 0}
+  audioSource: {fileID: 1661107592}
 --- !u!1 &6194973258947672793
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +183,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6194973258947672797}
-  - component: {fileID: 6194973258947672798}
   - component: {fileID: 6194973258947672799}
   - component: {fileID: 6194973258947672796}
   - component: {fileID: 709548414}
@@ -176,7 +192,7 @@ GameObject:
   - component: {fileID: 6194973258947672792}
   - component: {fileID: 1388350043}
   m_Layer: 8
-  m_Name: Player
+  m_Name: Spaceship
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,18 +215,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.093}
---- !u!114 &6194973258947672798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6194973258947672793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6df8c0c68e27efd41b8690424468c119, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6194973258947672799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 11400000, guid: 85551a354bb9fef4e996958ab8f02709, type: 2}
-  weaponPlatform: {fileID: 6194973257721291183}
+  weaponPlatform: {fileID: 7951441911547132295}
   timeBetweenShots: 0
 --- !u!114 &8755585391518492431
 MonoBehaviour:

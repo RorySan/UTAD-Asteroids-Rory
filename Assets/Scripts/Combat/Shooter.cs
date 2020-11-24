@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Asteroids.Combat
 {
@@ -8,9 +9,12 @@ namespace Asteroids.Combat
 
         [SerializeField]
         WeaponConfig currentWeapon;
-        [SerializeField] Transform weaponPlatform;
+        [SerializeField] WeaponPlatform weaponPlatform;
+        // timebetweenshots hay que moverlo a weapon platform si queremos tener varias.
         [SerializeField] float timeBetweenShots;
         float timeSinceLastShot = Mathf.Infinity;
+
+        public event Action OnWeaponEquipped;
 
         Coroutine shootingCoroutine;
 
@@ -18,7 +22,7 @@ namespace Asteroids.Combat
         // Start is called before the first frame update
         void Start()
         {
-
+            EquipWeapon(currentWeapon);
         }
 
         // Update is called once per frame
@@ -30,13 +34,22 @@ namespace Asteroids.Combat
         public void EquipWeapon(WeaponConfig newWeapon)
         {
             currentWeapon = newWeapon;
+            weaponPlatform.LoadWeapon(newWeapon);
+            timeBetweenShots = newWeapon.GetRateOfFire();
+            if (OnWeaponEquipped != null)
+                OnWeaponEquipped();
         }
 
         public void Shoot()
         {
-            if (timeSinceLastShot <= 60 / currentWeapon.GetRateOfFire()) return;
-            currentWeapon.Fire(weaponPlatform, gameObject);
+            if (timeSinceLastShot <= 60 / timeBetweenShots) return;
+            weaponPlatform.Fire(gameObject);
             timeSinceLastShot = 0;
+        }
+
+        public WeaponConfig GetCurrentWeapon()
+        {
+            return currentWeapon;
         }
     }
 
