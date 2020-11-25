@@ -12,11 +12,13 @@ namespace Asteroids.Control
         Health AIHealth;
         Mover AIMover;
 
-        [SerializeField] float aggroDistance = 8f;
-        [SerializeField] float rotationSpeed = 3f;
+        [SerializeField] float aggroDistance = 9f;
+        [SerializeField] float backoffDistance = 4f;
+        [SerializeField] float facingSpeed = 8f;
+        [SerializeField] float slideSpeed = 1f;
+        [SerializeField] float thrust = 1f;
+        [SerializeField] float rotation = 3f;
 
-        public int interpolationFramesCount = 45; // Number of frames to completely interpolate between the 2 positions
-        int elapsedFrames = 0;
 
         private void Awake()
         {
@@ -29,20 +31,30 @@ namespace Asteroids.Control
         void Update()
         {
             if (AIHealth.IsDead()) return;
-            if (IsAggrevated())
+
+            if (HasAggro())
                 AttackBehaviour();
         }
 
         private void AttackBehaviour()
         {
-            FaceTarget();
-            if (Vector3.Distance(transform.position, player.transform.position) < 5)
-                AIMover.Move(0, -0.7f);
-            else
-                AIMover.Move(0, 0.7f);
+            //FaceTarget();
+            transform.LookAt(player.transform.position);
+            transform.Rotate(0, -90, 0);
 
+            //transform.rotation = Quaternion.Euler(new Vector3(0, 0, player.transform.rotation.z));
+            if (DistanceToPlayer() < backoffDistance)
+                AIMover.Move(thrust, -rotation);
+
+            else// (DistanceToPlayer() < 3)
+                AIMover.Move(-thrust, rotation);
+            //Slide();
             AIShooter.Shoot();
-            Slide();
+        }
+
+        private void MovementBehaviour()
+        {
+
         }
 
         private void FaceTarget()
@@ -50,18 +62,21 @@ namespace Asteroids.Control
             Vector3 vectorToTarget = player.transform.position - transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 5);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * facingSpeed);
+        }
+        private float DistanceToPlayer()
+        {
+            return Vector3.Distance(transform.position, player.transform.position);
         }
 
-        private bool IsAggrevated()
+        private bool HasAggro()
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            return distanceToPlayer <= aggroDistance;
+            return DistanceToPlayer() <= aggroDistance;
         }
 
         private void Slide()
         {
-            Debug.Log("vector to target: " + (player.transform.position - transform.position));
+            //Debug.Log("vector to target: " + (player.transform.position - transform.position));
             var vector = player.transform.position - transform.position;
             if (vector.y < 0)
                 transform.Translate(-transform.up * Time.deltaTime * 2);

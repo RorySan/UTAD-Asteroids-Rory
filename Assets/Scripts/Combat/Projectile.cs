@@ -56,11 +56,13 @@ namespace Asteroids.Combat
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log(instigator.name + " has hit: " + collision.name);
             onHit.Invoke();
-            var isCombatTarget = collision.GetComponent<CombatTarget>();
-            if (!isCombatTarget) return;
-
-            collision.GetComponent<Health>().TakeDamage(instigator, damage);
+            //var isCombatTarget = collision.GetComponent<CombatTarget>();
+            //if (!isCombatTarget) return;
+            var hasHealth = collision.GetComponent<Health>();
+            if (hasHealth)
+                hasHealth.TakeDamage(instigator, damage);
             DisableProjectile();
         }
 

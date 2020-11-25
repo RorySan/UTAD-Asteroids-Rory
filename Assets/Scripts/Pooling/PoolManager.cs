@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Asteroids.Pooling
@@ -8,6 +9,8 @@ namespace Asteroids.Pooling
         Dictionary<int, List<GameObject>> poolDictionary = new Dictionary<int, List<GameObject>>();
 
         static PoolManager _instance;
+
+        List<Transform> _parents;
 
         public static PoolManager instance
         {
@@ -24,17 +27,16 @@ namespace Asteroids.Pooling
         public void CreatePool(GameObject prefab, int poolSize)
         {
             int poolKey = prefab.GetInstanceID();
+            if (_parents == null)
+                _parents = new List<Transform>();
 
             if (!poolDictionary.ContainsKey(poolKey))
             {
                 poolDictionary.Add(poolKey, new List<GameObject>());
-                var parent = new GameObject();
-                parent.name = prefab.name;
-                parent.transform.SetParent(this.transform);
 
                 for (int i = 0; i < poolSize; i++)
                 {
-                    GameObject newObject = Instantiate(prefab, parent.transform);
+                    GameObject newObject = Instantiate(prefab, GetParentForPool(prefab));
                     poolDictionary[poolKey].Add(newObject);
                     newObject.SetActive(false);
                 }
@@ -53,15 +55,37 @@ namespace Asteroids.Pooling
                 {
                     if (!pool[i].gameObject.activeInHierarchy)
                     {
+                        pool[i].SetActive(true);
                         return pool[i];
                     }
                 }
 
-                GameObject newObject = Instantiate(prefab);
+                GameObject newObject = Instantiate(prefab, GetParentForPool(prefab));
                 poolDictionary[poolKey].Add(newObject);
+
                 return newObject;
             }
             return null;
+        }
+
+        private Transform GetParentForPool(GameObject prefab)
+        {
+            Transform parent;
+            try
+            {
+                parent = _parents.Where(x => x.name == prefab.name).ToList()[0];
+                return parent;
+            }
+            catch
+            {
+                Debug.Log("Creating new prefab for pool");
+            }
+
+            parent = new GameObject().transform;
+            parent.name = prefab.name;
+            parent.SetParent(this.transform);
+            _parents.Add(parent);
+            return parent;
         }
     }
 }

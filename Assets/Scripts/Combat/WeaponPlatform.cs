@@ -17,7 +17,7 @@ namespace Asteroids.Combat
             projectile.GetComponent<Projectile>().SetupProjectile(weaponConfig.GetWeaponDamage(), weaponConfig.GetProjectileSpeed(), instigator);
             projectile.transform.position = transform.position;
             projectile.transform.rotation = transform.rotation;
-            projectile.SetActive(true);
+            //projectile.SetActive(true);
             audioSource.PlayOneShot(fireSound);
         }
 

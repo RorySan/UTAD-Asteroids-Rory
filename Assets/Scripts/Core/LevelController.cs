@@ -3,12 +3,9 @@
 
 namespace Asteroids.Core
 {
-
     public class LevelController : MonoBehaviour
     {
-
         [SerializeField] int score;
-
 
         public int GetScore()
         {
@@ -18,17 +15,28 @@ namespace Asteroids.Core
         public void ScorePoints(int points)
         {
             score += points;
-
         }
 
-
-        // Start is called before the first frame update
         void Start()
         {
 
         }
 
-        // Update is called once per frame
+        public void ResetGame()
+        {
+
+        }
+
+        public void StopSpawners()
+        {
+            Debug.Log("Stopping spawners");
+            EnemySpawner[] spawners = FindObjectsOfType<EnemySpawner>();
+            foreach (EnemySpawner spawner in spawners)
+            {
+                spawner.StopSpawning();
+            }
+        }
+
         void Update()
         {
 

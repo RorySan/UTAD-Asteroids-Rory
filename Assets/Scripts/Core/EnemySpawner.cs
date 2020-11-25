@@ -53,7 +53,6 @@ namespace Asteroids.Core
             var newEnemy = PoolManager.instance.Spawn(enemy.gameObject);
             newEnemy.transform.position = position;
             newEnemy.transform.rotation = angle;
-            newEnemy.SetActive(true);
         }
 
         private Vector3 CalculateRandomPosition()
