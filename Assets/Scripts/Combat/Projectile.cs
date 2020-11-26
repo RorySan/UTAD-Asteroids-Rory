@@ -23,6 +23,8 @@ namespace Asteroids.Combat
         private void OnEnable()
         {
             GetComponentInChildren<MeshRenderer>().enabled = true;
+            GetComponent<BoxCollider2D>().enabled = true;
+
             Invoke(nameof(DisableImmediately), maxLifeTime);
         }
 
@@ -39,6 +41,7 @@ namespace Asteroids.Combat
         private void DisableProjectile()
         {
             GetComponentInChildren<MeshRenderer>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
             // mirar hacerlo con coroutine.
             Invoke(nameof(DisableImmediately), 0.5f);
         }
@@ -65,6 +68,10 @@ namespace Asteroids.Combat
                 hasHealth.TakeDamage(instigator, damage);
             DisableProjectile();
         }
+
+
+
+
 
     }
 
