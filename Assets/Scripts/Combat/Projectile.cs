@@ -61,7 +61,7 @@ namespace Asteroids.Combat
             //var isCombatTarget = collision.GetComponent<CombatTarget>();
             //if (!isCombatTarget) return;
             var hasHealth = collision.GetComponent<Health>();
-            if (hasHealth)
+            if (hasHealth && !hasHealth.IsDead())
                 hasHealth.TakeDamage(instigator, damage);
             DisableProjectile();
         }

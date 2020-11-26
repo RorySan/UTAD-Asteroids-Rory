@@ -1,17 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &7222493931835787820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5969244632222350393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6df8c0c68e27efd41b8690424468c119, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &552962813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24,6 +12,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8cb6545a7869745988635408dfba1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7222493931835787820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5969244632222350393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df8c0c68e27efd41b8690424468c119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7306901036854320709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5969244632222350393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 346bc8d3a03f64a4cb8e0d692e5b1997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  OnScoreChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &517899691776247520
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87,7 +115,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.093
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 709548414, guid: 2813933446935884abc4b743bfe1332c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2813933446935884abc4b743bfe1332c, type: 3}
 --- !u!1 &5969244632222350393 stripped
 GameObject:

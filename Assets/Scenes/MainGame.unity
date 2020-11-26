@@ -2430,6 +2430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  sceneLoader: {fileID: 0}
 --- !u!4 &1063152883
 Transform:
   m_ObjectHideFlags: 0
@@ -2577,7 +2578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -3666,6 +3667,63 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!1001 &1717120341
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 872673935100058072, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 872673935100058072, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 597.4373
+      objectReference: {fileID: 0}
+    - target: {fileID: 872673935100058072, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 310.66684
+      objectReference: {fileID: 0}
+    - target: {fileID: 872673935100058072, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -568.1322
+      objectReference: {fileID: 0}
+    - target: {fileID: 872673935100058072, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 872673935100058072, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 872673935100058072, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 872673935100058072, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 872673935100058072, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 872673935100058072, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 872673935100058072, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 872673935100058075, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
+      propertyPath: m_Name
+      value: SceneLoader
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4fb34a54d910c9d4595f86665afba70a, type: 3}
 --- !u!1 &1754430322
 GameObject:
   m_ObjectHideFlags: 0
@@ -4282,11 +4340,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5969244632222350396, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
       propertyPath: healthPoints
-      value: 2000
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5969244632222350396, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
       propertyPath: maxHealthPoints
-      value: 2000
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5969244632222350396, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
       propertyPath: onDie.m_PersistentCalls.m_Calls.Array.size
@@ -4306,7 +4364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5969244632222350396, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
       propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StopSpawners
+      value: OnPlayerDeath
       objectReference: {fileID: 0}
     - target: {fileID: 5969244632222350396, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
       propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4372,7 +4430,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.093
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7306901036854320709, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
+      propertyPath: OnScoreChange.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306901036854320709, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
+      propertyPath: OnScoreChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1870832980}
+    - target: {fileID: 7306901036854320709, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
+      propertyPath: OnScoreChange.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306901036854320709, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
+      propertyPath: OnScoreChange.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Asteroids.UI.ScoreText, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306901036854320709, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
+      propertyPath: OnScoreChange.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 517899692484419486, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7d790c44c594aaa46b0ef5ce84e44995, type: 3}
 --- !u!1 &2083016631
 GameObject:
@@ -4562,6 +4641,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7212068698606382521, guid: 05a18e215c5151f499ac34f58ef5c506, type: 3}
+      propertyPath: onDie.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8900248729979393160, guid: 05a18e215c5151f499ac34f58ef5c506, type: 3}
       propertyPath: m_Name
       value: Meteor

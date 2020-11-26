@@ -3,6 +3,7 @@ using Asteroids.Stats;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 namespace Asteroids.Combat
 {
 
@@ -38,9 +39,10 @@ namespace Asteroids.Combat
 
         private void GiveReward(GameObject instigator)
         {
-            var score = instigator.GetComponent<Score>();
-            if (!score) return;
-            score.IncreaseScore(GetComponent<Enemy>().GetPoints());
+            Debug.Log(gameObject.name + " rewards: " + instigator.name);
+            var instigatorScore = instigator.GetComponent<ScoreKeeper>();
+            if (!instigatorScore) return;
+            instigatorScore.IncreaseScore(GetComponent<Enemy>().GetPoints());
         }
 
         public float GetHealth()

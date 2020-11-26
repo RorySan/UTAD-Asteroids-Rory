@@ -1,5 +1,4 @@
-﻿using Asteroids.Stats;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace Asteroids.UI
@@ -7,28 +6,29 @@ namespace Asteroids.UI
     public class ScoreText : MonoBehaviour
     {
 
-        Score score;
+        //Score score;
         TextMeshProUGUI text;
 
 
         private void Start()
         {
-            // para múltiples jugadores o jugadores de IA, cambiaremos score y text a listas
+            // para múltiples jugadores o jugadores de IA, usaríamos colecciones.
             // por ahora sólo vamos a gestionar un jugador.
-            score = FindObjectOfType<Score>();
+            //score = FindObjectOfType<Score>();
             text = GetComponent<TextMeshProUGUI>();
-            UpdateScore();
-            score.OnScoreIncreased += UpdateScore;
+            UpdateScore(0);
+            //score.OnScoreIncreased += UpdateScore;
         }
 
-        private void UpdateScore()
+        public void UpdateScore(int score)
         {
-            text.text = score.GetScore().ToString();
+            text.text = score.ToString();
+
         }
 
         private void OnDisable()
         {
-            score.OnScoreIncreased -= UpdateScore;
+            //score.OnScoreIncreased -= UpdateScore;
         }
 
 

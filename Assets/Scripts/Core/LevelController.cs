@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Asteroids.Combat;
+using Asteroids.SceneManagement;
+using UnityEngine;
 
 
 namespace Asteroids.Core
@@ -6,20 +8,29 @@ namespace Asteroids.Core
     public class LevelController : MonoBehaviour
     {
         [SerializeField] int score;
+        [SerializeField] SceneLoader sceneLoader;
+        Health playerHealth;
+
+        private void Awake()
+        {
+            sceneLoader = FindObjectOfType<SceneLoader>();
+        }
 
         public int GetScore()
         {
             return score;
         }
 
+        public void OnPlayerDeath()
+        {
+
+            StopSpawners();
+            sceneLoader.LoadGameOver();
+        }
+
         public void ScorePoints(int points)
         {
             score += points;
-        }
-
-        void Start()
-        {
-
         }
 
         public void ResetGame()
@@ -37,9 +48,5 @@ namespace Asteroids.Core
             }
         }
 
-        void Update()
-        {
-
-        }
     }
 }

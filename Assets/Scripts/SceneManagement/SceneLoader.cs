@@ -4,17 +4,21 @@ using UnityEngine.SceneManagement;
 
 namespace Asteroids.SceneManagement
 {
+
     public class SceneLoader : MonoBehaviour
     {
+
+        [SerializeField] float delayedLoad = 2f;
+
         public void LoadNextScene()
         {
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(currentSceneIndex + 1);
         }
 
-        public void DelayedNextScene()
+        public void LoadSceneDelayed(string scene)
         {
-            StartCoroutine(CoroutineDelayedNextScene());
+            StartCoroutine(CoroutineDelayedNextScene(scene));
         }
 
         public void LoadPreviousScene()
@@ -36,7 +40,7 @@ namespace Asteroids.SceneManagement
 
         public void LoadGameOver()
         {
-            SceneManager.LoadScene(2);
+            StartCoroutine(CoroutineDelayedNextScene("Game Over"));
         }
 
         public void QuitGame()
@@ -44,10 +48,10 @@ namespace Asteroids.SceneManagement
             Application.Quit();
         }
 
-        IEnumerator CoroutineDelayedNextScene()
+        IEnumerator CoroutineDelayedNextScene(string scene)
         {
             yield return new WaitForSeconds(2f);
-            SceneManager.LoadScene("Game Over");
+            SceneManager.LoadScene(scene);
         }
     }
 }

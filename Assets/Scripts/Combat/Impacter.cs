@@ -11,7 +11,7 @@ namespace Asteroids.Combat
         {
             var health = collision.gameObject.GetComponent<Health>();
 
-            if (!health) return;
+            if (!health || health.IsDead()) return;
             health.TakeDamage(gameObject, impactDamage);
         }
     }
