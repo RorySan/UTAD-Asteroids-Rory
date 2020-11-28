@@ -12,7 +12,7 @@ namespace Asteroids.Combat
         [SerializeField] float maxHealthPoints;
         [SerializeField] float healthPoints;
         [SerializeField] TakeDamageEvent takeDamage;
-        [SerializeField] UnityEvent onDie;
+        [SerializeField] public UnityEvent onDie;
         [SerializeField] bool isDead;
 
         [System.Serializable]
@@ -39,7 +39,6 @@ namespace Asteroids.Combat
 
         private void GiveReward(GameObject instigator)
         {
-            Debug.Log(gameObject.name + " rewards: " + instigator.name);
             var instigatorScore = instigator.GetComponent<ScoreKeeper>();
             if (!instigatorScore) return;
             instigatorScore.IncreaseScore(GetComponent<Enemy>().GetPoints());

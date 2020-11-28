@@ -51,40 +51,50 @@ namespace Asteroids.Pooling
             {
                 List<GameObject> pool = poolDictionary[poolKey];
 
-                for (int i = 0; i < pool.Count; i++)
+                var obj = pool.FirstOrDefault(x => !x.gameObject.activeInHierarchy);
+
+                if (obj == null)
                 {
-                    if (!pool[i].gameObject.activeInHierarchy)
-                    {
-                        pool[i].SetActive(true);
-                        return pool[i];
-                    }
+                    obj = Instantiate(prefab, GetParentForPool(prefab));
+                    poolDictionary[poolKey].Add(obj);
                 }
-
-                GameObject newObject = Instantiate(prefab, GetParentForPool(prefab));
-                poolDictionary[poolKey].Add(newObject);
-
-                return newObject;
+                obj.SetActive(true);
+                return obj;
             }
             return null;
         }
 
+        //public GameObject Spawn(GameObject prefab)
+        //{
+        //    int poolKey = prefab.GetInstanceID();
+
+        //    if (poolDictionary.ContainsKey(poolKey))
+        //    {
+        //        List<GameObject> pool = poolDictionary[poolKey];
+
+        //        var obj = pool.FirstOrDefault(x => !x.gameObject.activeInHierarchy);
+
+        //        if (obj == null)
+        //        {
+        //            obj = Instantiate(prefab, GetParentForPool(prefab));
+        //            poolDictionary[poolKey].Add(obj);
+        //        }
+        //        obj.SetActive(true);
+        //        return obj;
+        //    }
+        //    return null;
+        //}
+
         private Transform GetParentForPool(GameObject prefab)
         {
-            Transform parent;
-            try
+            Transform parent = _parents.FirstOrDefault(x => x.name == prefab.name);
+            if (parent == null)
             {
-                parent = _parents.Where(x => x.name == prefab.name).ToList()[0];
-                return parent;
+                parent = new GameObject().transform;
+                parent.name = prefab.name;
+                parent.SetParent(this.transform);
+                _parents.Add(parent);
             }
-            catch
-            {
-                Debug.Log("Creating new prefab for pool");
-            }
-
-            parent = new GameObject().transform;
-            parent.name = prefab.name;
-            parent.SetParent(this.transform);
-            _parents.Add(parent);
             return parent;
         }
     }
