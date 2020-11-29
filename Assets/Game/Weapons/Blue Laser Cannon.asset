@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7579dfe9fe7668e41805c7de7e9262c8, type: 3}
   m_Name: Blue Laser Cannon
   m_EditorClassIdentifier: 
-  rateOfFire: 500
+  rateOfFire: 300
   projectile: {fileID: 8266773006789185053, guid: 53e798ad001ff1d47951480798d20e05, type: 3}
   weaponDamage: 8000
   projectileSpeed: 10
